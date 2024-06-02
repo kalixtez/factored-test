@@ -1,0 +1,19 @@
+version: '1.0'
+services:
+  api_server:
+    build: ./Back
+    ports:
+      - 8000:8000
+    volumes:
+      - ./Back/bind:/api/back/DB
+    networks:
+      - public_factored
+  client_web:
+    build: ./Front
+    ports:
+      - 80:5173
+    networks:
+      - public_factored
+networks:
+  public_factored:
+    driver: bridge
